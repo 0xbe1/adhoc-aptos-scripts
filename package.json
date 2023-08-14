@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@aptos-labs/wallet-adapter-react": "^1.3.2",
+    "@thalalabs/surf": "^0.0.12",
+    "aptos": "^1.18.0",
+    "typescript": "^5.1.6"
+  }
+}
