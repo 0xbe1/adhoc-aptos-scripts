@@ -7,7 +7,7 @@ async function main() {
   console.log(`1 THL = ${thlPriceUsd} USD`);
 }
 
-async function getThlPriceUsd(ledgerVersion?: string) {
+async function getThlPriceUsd(ledgerVersion?: string): Promise<number> {
   const [balancesRaw, weightsRaw] = await client.view(
     {
       function:
