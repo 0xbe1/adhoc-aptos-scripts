@@ -14,15 +14,14 @@ const THALASWAP_CONTRACT =
 const client = new AptosClient("https://fullnode.mainnet.aptoslabs.com/v1");
 
 async function main() {
-  for (let i = 224200000; i >= 114200000; i = i - 1000000) {
-    let block = await client.getBlockByVersion(i);
-    let redeemed = await getRedeemdedTHL(i);
-    console.log(
-      `(${i})[${new Date(Number(block.block_timestamp) / 1000).toLocaleString(
-        "en-US",
-      )}] ${redeemed.toFixed(3)}`,
-    );
-  }
+  const lastLedger = await client.getLedgerInfo();
+  const lastLedgerVersion = Number(lastLedger.ledger_version);
+  const redeemded = await getRedeemdedTHL(lastLedgerVersion);
+  console.log(
+    `(${lastLedgerVersion})[${new Date(
+      Number(lastLedger.ledger_timestamp) / 1000,
+    ).toLocaleString()}] ${redeemded.toFixed(3)}`,
+  );
 }
 
 async function getRedeemdedTHL(ledgerVersion: number) {
